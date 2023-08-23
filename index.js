@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { randomBytes } = require('crypto');
 const multer = require('multer');
+const PORT = process.env.PORT || 4001;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -37,6 +38,6 @@ app.post('/images', upload.single('image'), async (req, res) => {
     .send({ filePath: `${req.file.destination}${req.file.filename}` });
 });
 
-app.listen(4001, () => {
+app.listen(PORT, () => {
   console.log('Listening on port 4001');
 });
